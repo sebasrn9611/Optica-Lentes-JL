@@ -1,0 +1,230 @@
+/* ==========================================================================
+   ARCHIVO: AdminLayout.css
+   ========================================================================== */
+
+.admin-layout {
+    display: grid;
+
+    grid-template-columns: 270px 1fr;
+
+    min-height: 100vh;
+
+    background-color: #f4f8fc;
+}
+
+
+/* ==========================================================================
+   SIDEBAR
+   ========================================================================== */
+
+.admin-sidebar {
+    position: sticky;
+
+    top: 0;
+
+    height: 100vh;
+
+    display: flex;
+
+    flex-direction: column;
+
+    padding: 20px;
+
+    background-color: #08355c;
+
+    color: #ffffff;
+}
+
+
+.admin-sidebar-logo {
+    background-color: #ffffff;
+
+    border-radius: 12px;
+
+    padding: 10px;
+
+    margin-bottom: 22px;
+}
+
+
+.admin-sidebar-logo img {
+    width: 100%;
+
+    display: block;
+}
+
+
+/* ==========================================================================
+   PERFIL
+   ========================================================================== */
+
+.admin-profile {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 18px 6px;
+
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+
+    margin-bottom: 20px;
+}
+
+
+.admin-profile-avatar {
+    width: 42px;
+    height: 42px;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background-color: #b8d9f7;
+
+    color: #08355c;
+
+    font-weight: 800;
+}
+
+
+.admin-profile strong {
+    display: block;
+
+    font-size: 14px;
+}
+
+
+.admin-profile span {
+    display: block;
+
+    margin-top: 3px;
+
+    font-size: 12px;
+
+    color: #bcd1e2;
+}
+
+
+/* ==========================================================================
+   MENÚ
+   ========================================================================== */
+
+.admin-menu {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+
+    flex: 1;
+}
+
+
+.admin-menu-link {
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+
+    padding: 13px 14px;
+
+    border-radius: 10px;
+
+    color: #d2e4f2;
+
+    text-decoration: none;
+
+    font-weight: 600;
+
+    transition:
+        background-color 0.3s ease,
+        color 0.3s ease,
+        transform 0.3s ease;
+}
+
+
+.admin-menu-link:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+
+    color: #ffffff;
+
+    transform: translateX(3px);
+}
+
+
+.admin-menu-link.active {
+    background-color: #1a5c8f;
+
+    color: #ffffff;
+
+    box-shadow: inset 3px 0 0 #6fc6ff;
+}
+
+
+/* ==========================================================================
+   CERRAR SESIÓN
+   ========================================================================== */
+
+.admin-logout {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 13px 14px;
+
+    border-radius: 10px;
+
+    color: #ffffff;
+
+    text-decoration: none;
+
+    background-color: rgba(255, 255, 255, 0.08);
+
+    transition: background-color 0.3s ease;
+}
+
+
+.admin-logout:hover {
+    background-color: #c94a4a;
+}
+
+
+/* ==========================================================================
+   CONTENIDO PRINCIPAL
+   ========================================================================== */
+
+.admin-main {
+    min-width: 0;
+
+    padding: 0;
+}
+
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+
+@media (max-width: 900px) {
+
+    .admin-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .admin-sidebar {
+        position: relative;
+
+        height: auto;
+    }
+
+}

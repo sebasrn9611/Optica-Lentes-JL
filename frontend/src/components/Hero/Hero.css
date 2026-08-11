@@ -1,0 +1,446 @@
+/* ==========================================================================
+   ARCHIVO: Hero.css
+
+   DESCRIPCIÓN:
+   Estilos exclusivos del Hero profesional de Óptica Lentes J.L.
+   ========================================================================== */
+
+/* ==========================================================================
+   SECCIÓN PRINCIPAL
+   ========================================================================== */
+
+.hero {
+    /* Fondo con un degradado suave inspirado en el logo */
+    background:
+        linear-gradient(
+            135deg,
+            #f4faff 0%,
+            #e4f3ff 55%,
+            #ffffff 100%
+        );
+
+    /* Espacio interno superior, lateral e inferior */
+    padding: 85px 8%;
+
+    /* Evita desbordamientos horizontales */
+    overflow: hidden;
+}
+
+/* ==========================================================================
+   CONTENEDOR DE LAS DOS COLUMNAS
+   ========================================================================== */
+
+.hero-container {
+    /* Activa Flexbox */
+    display: flex;
+
+    /* Alinea verticalmente el texto y el espacio visual */
+    align-items: center;
+
+    /* Separa las dos columnas */
+    gap: 70px;
+
+    /* Limita el ancho máximo en pantallas grandes */
+    max-width: 1400px;
+
+    /* Centra todo el contenido */
+    margin: 0 auto;
+}
+
+/* ==========================================================================
+   COLUMNA IZQUIERDA
+   ========================================================================== */
+
+.hero-content {
+    /* Permite que la columna utilice el espacio disponible */
+    flex: 1;
+
+    /* Evita desbordamientos dentro de Flexbox */
+    min-width: 0;
+}
+
+/* ==========================================================================
+   ETIQUETA SUPERIOR
+   ========================================================================== */
+
+.hero-badge {
+    /* Coloca el icono y el texto horizontalmente */
+    display: inline-flex;
+
+    /* Centra verticalmente los elementos */
+    align-items: center;
+
+    /* Separa el icono del texto */
+    gap: 9px;
+
+    /* Fondo azul claro */
+    background-color: #d8efff;
+
+    /* Texto azul corporativo */
+    color: #075c9f;
+
+    /* Espacio interior */
+    padding: 10px 18px;
+
+    /* Forma completamente redondeada */
+    border-radius: 999px;
+
+    /* Resalta el texto */
+    font-weight: 700;
+
+    /* Separa la etiqueta del título */
+    margin-bottom: 24px;
+}
+
+/* ==========================================================================
+   TÍTULO PRINCIPAL
+   ========================================================================== */
+
+.hero-content h1 {
+    /* Tamaño adaptable según la pantalla */
+    font-size: clamp(42px, 5vw, 68px);
+
+    /* Reduce el espacio vertical entre líneas */
+    line-height: 1.08;
+
+    /* Color azul oscuro */
+    color: #063f70;
+
+    /* Separación inferior */
+    margin-bottom: 24px;
+
+    /* Evita que el título sea demasiado ancho */
+    max-width: 750px;
+}
+
+/* ==========================================================================
+   DESCRIPCIÓN PRINCIPAL
+   ========================================================================== */
+
+.hero-description {
+    /* Tamaño cómodo para lectura */
+    font-size: 20px;
+
+    /* Espacio entre líneas */
+    line-height: 1.7;
+
+    /* Color gris azulado */
+    color: #455b6d;
+
+    /* Limita el ancho del texto */
+    max-width: 680px;
+}
+
+/* ==========================================================================
+   LISTA DE BENEFICIOS
+   ========================================================================== */
+
+.hero-benefits {
+    /* Separa la lista de la descripción */
+    margin-top: 32px;
+
+    /* Activa Flexbox */
+    display: flex;
+
+    /* Coloca los beneficios verticalmente */
+    flex-direction: column;
+
+    /* Espacio entre beneficios */
+    gap: 14px;
+}
+
+/* Cada beneficio */
+.hero-benefit {
+    /* Coloca el icono y el texto horizontalmente */
+    display: flex;
+
+    /* Alinea verticalmente los elementos */
+    align-items: center;
+
+    /* Separa el icono del texto */
+    gap: 12px;
+
+    /* Tamaño del texto */
+    font-size: 18px;
+
+    /* Color principal */
+    color: #263b4c;
+}
+
+/* Iconos de verificación */
+.hero-benefit svg {
+    /* Color azul corporativo */
+    color: #0879c9;
+
+    /* Evita que el icono se reduzca */
+    flex-shrink: 0;
+}
+
+/* ==========================================================================
+   BOTONES
+   ========================================================================== */
+
+.hero-buttons {
+    /* Coloca los botones horizontalmente */
+    display: flex;
+
+    /* Permite que bajen de línea cuando no haya espacio */
+    flex-wrap: wrap;
+
+    /* Espacio entre botones */
+    gap: 16px;
+
+    /* Separación superior */
+    margin-top: 38px;
+}
+
+/* Estilos compartidos por los dos botones */
+.hero-button {
+    /* Alinea el icono y el texto */
+    display: inline-flex;
+
+    /* Centra verticalmente los elementos */
+    align-items: center;
+
+    /* Centra horizontalmente el contenido */
+    justify-content: center;
+
+    /* Separa el icono del texto */
+    gap: 10px;
+
+    /* Espacio interno */
+    padding: 15px 25px;
+
+    /* Bordes redondeados */
+    border-radius: 10px;
+
+    /* Tamaño y peso del texto */
+    font-size: 17px;
+    font-weight: 700;
+
+    /* Elimina el subrayado del enlace */
+    text-decoration: none;
+
+    /* Muestra el cursor de mano */
+    cursor: pointer;
+
+    /* Animación suave */
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        background-color 0.25s ease;
+}
+
+/* Botón principal */
+.hero-button-primary {
+    /* Fondo azul corporativo */
+    background-color: #0879c9;
+
+    /* Texto blanco */
+    color: #ffffff;
+
+    /* Borde del mismo color */
+    border: 2px solid #0879c9;
+}
+
+/* Botón secundario */
+.hero-button-secondary {
+    /* Fondo blanco */
+    background-color: #ffffff;
+
+    /* Texto azul */
+    color: #0879c9;
+
+    /* Borde azul */
+    border: 2px solid #0879c9;
+}
+
+/* Efecto al pasar el cursor */
+.hero-button:hover {
+    /* Eleva ligeramente el botón */
+    transform: translateY(-3px);
+
+    /* Agrega una sombra suave */
+    box-shadow: 0 10px 22px rgba(8, 121, 201, 0.2);
+}
+
+/* ==========================================================================
+   INDICADORES DE CONFIANZA
+   ========================================================================== */
+
+.hero-stats {
+    /* Crea una cuadrícula */
+    display: grid;
+
+    /* Divide el espacio en tres columnas iguales */
+    grid-template-columns: repeat(3, 1fr);
+
+    /* Espacio entre columnas */
+    gap: 20px;
+
+    /* Separación superior */
+    margin-top: 48px;
+
+    /* Espacio sobre los indicadores */
+    padding-top: 28px;
+
+    /* Línea divisoria */
+    border-top: 1px solid #c9e2f2;
+}
+
+/* Cada indicador */
+.hero-stat {
+    /* Organiza el título y el texto verticalmente */
+    display: flex;
+
+    /* Dirección vertical */
+    flex-direction: column;
+
+    /* Espacio entre textos */
+    gap: 5px;
+}
+
+/* Título de cada indicador */
+.hero-stat strong {
+    /* Color azul */
+    color: #075c9f;
+
+    /* Tamaño destacado */
+    font-size: 21px;
+}
+
+/* Descripción del indicador */
+.hero-stat span {
+    /* Color secundario */
+    color: #607586;
+
+    /* Tamaño más pequeño */
+    font-size: 14px;
+}
+
+/* ==========================================================================
+   COLUMNA DERECHA
+   ========================================================================== */
+
+.hero-visual {
+    /* Define un tamaño proporcional para la columna */
+    flex: 0.85;
+
+    /* Centra el contenido */
+    display: flex;
+    justify-content: center;
+
+    /* Limita el ancho */
+    max-width: 500px;
+
+    /* Permite utilizar el ancho disponible */
+    width: 100%;
+}
+
+/* ==========================================================================
+   IMAGEN PROFESIONAL DEL HERO
+   ========================================================================== */
+
+.hero-image {
+    /* La imagen ocupa todo el ancho de su contenedor */
+    width: 100%;
+
+    /* Altura controlada para conservar el diseño del Hero */
+    height: 610px;
+
+    /* Recorta la imagen sin deformarla */
+    object-fit: cover;
+
+    /* Prioriza la parte central y superior de la fotografía */
+    object-position: center top;
+
+    /* Redondea principalmente el lado izquierdo */
+    border-radius: 180px 24px 24px 180px;
+
+    /* Sombra suave para separar la fotografía del fondo */
+    box-shadow: 0 25px 55px rgba(4, 77, 126, 0.2);
+
+    /* Elimina el espacio inferior propio de las imágenes */
+    display: block;
+}
+
+/* ==========================================================================
+   DISEÑO RESPONSIVE PARA TABLET
+   ========================================================================== */
+
+@media (max-width: 1050px) {
+    .hero-container {
+        /* Coloca una columna debajo de la otra */
+        flex-direction: column;
+
+        /* Hace que ocupen todo el ancho */
+        align-items: stretch;
+    }
+
+    .hero-visual {
+        /* Permite una imagen más ancha en tablet */
+        max-width: 650px;
+
+        /* Centra el espacio visual */
+        margin: 0 auto;
+    }
+
+        /* Ajustamos la imagen cuando las columnas pasan a posición vertical */
+    .hero-image {
+        height: 520px;
+        border-radius: 24px;
+        object-position: center top;
+    }
+}
+
+/* ==========================================================================
+   DISEÑO RESPONSIVE PARA CELULAR
+   ========================================================================== */
+
+@media (max-width: 650px) {
+    .hero {
+        /* Reduce los espacios laterales */
+        padding: 55px 22px;
+    }
+
+    .hero-content h1 {
+        /* Reduce el tamaño del título */
+        font-size: 40px;
+    }
+
+    .hero-description {
+        /* Reduce el tamaño del párrafo */
+        font-size: 17px;
+    }
+
+    .hero-buttons {
+        /* Organiza los botones verticalmente */
+        flex-direction: column;
+    }
+
+    .hero-button {
+        /* Hace que cada botón ocupe todo el ancho */
+        width: 100%;
+    }
+
+    .hero-stats {
+        /* Organiza los indicadores verticalmente */
+        grid-template-columns: 1fr;
+    }
+
+    .hero-placeholder {
+        /* Reduce la altura del espacio visual */
+        min-height: 320px;
+    }
+
+    .hero-placeholder-icon {
+        /* Reduce el tamaño del icono */
+        font-size: 90px;
+    }
+
+        /* Reducimos la altura de la fotografía en dispositivos móviles */
+    .hero-image {
+        height: 400px;
+        border-radius: 20px;
+    }
+}

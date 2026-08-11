@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-labelledby="title">
+  <title id="title">PSE</title>
+  <defs>
+    <radialGradient id="pse-blue" cx="50%" cy="48%" r="65%">
+      <stop offset="0" stop-color="#3565B5"/>
+      <stop offset="0.62" stop-color="#173F73"/>
+      <stop offset="1" stop-color="#092C4E"/>
+    </radialGradient>
+    <clipPath id="pse-circle">
+      <circle cx="100" cy="100" r="94"/>
+    </clipPath>
+  </defs>
+
+  <circle cx="100" cy="100" r="94" fill="url(#pse-blue)"/>
+
+  <g clip-path="url(#pse-circle)" fill="none" stroke="#FFB719" stroke-width="3">
+    <path d="M-12 78h33l18 30h25"/>
+    <path d="M-8 98h60l-15 27H19"/>
+    <path d="M4 54h18"/>
+  </g>
+
+  <g clip-path="url(#pse-circle)" fill="#FFB719">
+    <circle cx="7" cy="54" r="5"/>
+    <circle cx="28" cy="69" r="4"/>
+    <circle cx="19" cy="125" r="4"/>
+    <circle cx="29" cy="137" r="4"/>
+    <circle cx="20" cy="151" r="4"/>
+    <circle cx="4" cy="136" r="4"/>
+  </g>
+
+  <text x="72" y="76" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-size="15" font-style="italic" font-weight="300">ach</text>
+  <text x="105" y="126" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-size="69" font-style="italic" font-weight="300" letter-spacing="-8" text-anchor="middle">pse</text>
+</svg>

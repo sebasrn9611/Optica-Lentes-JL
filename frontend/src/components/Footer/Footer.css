@@ -1,0 +1,208 @@
+/* ========================================================================== 
+   ARCHIVO: Footer.css
+   ========================================================================== */
+
+.footer {
+    color: #dbeafe;
+    background: #082f67;
+}
+
+.footer-container {
+    display: grid;
+    grid-template-columns: 1.25fr 0.6fr 1fr 1fr;
+    gap: 45px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 65px 8%;
+}
+
+.footer-brand img {
+    display: block;
+    width: auto;
+    height: 72px;
+    margin-bottom: 20px;
+    padding: 8px 14px;
+    background-color: #ffffff;
+    border: 1px solid #e8eef5;
+    border-radius: 10px;
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.12);
+    object-fit: contain;
+    object-position: left center;
+    transition: transform 0.3s ease;
+}
+
+.footer-brand img:hover {
+    transform: scale(1.04);
+}
+
+.footer-brand p {
+    max-width: 390px;
+    color: #bfd3ef;
+    line-height: 1.7;
+}
+
+.footer h2 {
+    margin-bottom: 22px;
+    color: #fff;
+    font-size: 20px;
+}
+
+.footer-links nav,
+.footer-contact address {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.footer a {
+    color: #dbeafe;
+    text-decoration: none;
+    transition: color 0.25s, transform 0.25s;
+}
+
+.footer-links a:hover {
+    color: #fff;
+    transform: translateX(5px);
+}
+
+.footer-contact address {
+    font-style: normal;
+}
+
+.footer-contact a,
+.footer-contact address p {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    color: #dbeafe;
+    line-height: 1.5;
+}
+
+.footer-contact svg {
+    flex: 0 0 17px;
+    color: #64b5f6;
+}
+
+.footer-contact a:hover {
+    color: #fff;
+}
+
+.payment-methods {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    max-width: 250px;
+}
+
+.payment-method {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 54px;
+    padding: 8px 12px;
+    overflow: hidden;
+    color: #172554;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.14);
+}
+
+.payment-logo {
+    width: 58px;
+    height: 32px;
+}
+
+.payment-logo--visa {
+    color: #1434cb;
+}
+
+.payment-logo--amex {
+    color: #006fcf;
+}
+
+.mastercard-logo {
+    display: block;
+    width: 74px;
+    height: auto;
+}
+
+.addi-logo {
+    display: block;
+    width: 72px;
+    height: auto;
+}
+
+.pse-logo {
+    display: block;
+    width: 48px;
+    height: 48px;
+}
+
+.payment-method--cash {
+    gap: 7px;
+    color: #14743e;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.payment-method--cash svg {
+    font-size: 25px;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.footer-bottom {
+    padding: 22px 24px;
+    color: #aac3e5;
+    background: #06254f;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+    font-size: 14px;
+}
+
+@media (max-width: 850px) {
+    .footer-container {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 45px;
+    }
+
+    .footer-brand {
+        grid-column: 1 / -1;
+    }
+
+    .payment-methods {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 560px) {
+    .footer-container {
+        grid-template-columns: 1fr;
+        gap: 38px;
+        padding: 55px 24px;
+    }
+
+    .footer-brand {
+        grid-column: auto;
+    }
+
+    .footer-brand img {
+        height: 55px;
+    }
+
+    .footer-contact a,
+    .footer-contact address p {
+        align-items: flex-start;
+        overflow-wrap: anywhere;
+    }
+}

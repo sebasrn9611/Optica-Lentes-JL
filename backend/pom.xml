@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+============================================================================
+ARCHIVO: pom.xml
+
+DESCRIPCIÓN:
+Configuración Maven del backend de Óptica Lentes J.L.
+
+Contiene las dependencias necesarias para:
+- Crear una API REST con Spring MVC.
+- Trabajar con entidades y repositorios JPA.
+- Validar información.
+- Conectarse posteriormente con MySQL.
+- Utilizar Lombok.
+- Ejecutar pruebas.
+============================================================================
+-->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="
+             http://maven.apache.org/POM/4.0.0
+             https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<!-- Versión del modelo utilizado por Maven -->
+	<modelVersion>4.0.0</modelVersion>
+
+
+	<!--
+    ========================================================================
+    PROYECTO PADRE DE SPRING BOOT
+    ========================================================================
+    Administra automáticamente versiones compatibles de las dependencias.
+    -->
+	<parent>
+
+		<groupId>org.springframework.boot</groupId>
+
+		<artifactId>spring-boot-starter-parent</artifactId>
+
+		<version>4.1.0</version>
+
+		<!-- Indica que el padre se obtiene del repositorio de Maven -->
+		<relativePath/>
+
+	</parent>
+
+
+	<!--
+    ========================================================================
+    INFORMACIÓN DEL PROYECTO
+    ========================================================================
+    -->
+
+	<!-- Organización o paquete principal -->
+	<groupId>com.opticalentesjl</groupId>
+
+	<!-- Nombre técnico del proyecto -->
+	<artifactId>backend</artifactId>
+
+	<!-- Versión actual -->
+	<version>0.0.1-SNAPSHOT</version>
+
+	<!-- Nombre del proyecto -->
+	<name>backend</name>
+
+	<!-- Descripción -->
+	<description>
+		Backend del sistema web Óptica Lentes J.L.
+	</description>
+
+
+	<!--
+    ========================================================================
+    PROPIEDADES
+    ========================================================================
+    -->
+
+	<properties>
+
+		<!-- Versión de Java utilizada por el proyecto -->
+		<java.version>21</java.version>
+
+	</properties>
+
+
+	<!--
+    ========================================================================
+    DEPENDENCIAS
+    ========================================================================
+    -->
+
+	<dependencies>
+
+		<!--
+
+        SPRING WEB MVC
+
+        Permite crear:
+        - Controladores REST.
+        - Endpoints HTTP.
+        - Aplicaciones web con Spring MVC.
+        - Servidor Tomcat integrado.
+        -->
+		<dependency>
+
+			<groupId>org.springframework.boot</groupId>
+
+			<artifactId>
+				spring-boot-starter-webmvc
+			</artifactId>
+
+		</dependency>
+
+
+		<!--
+
+        SPRING DATA JPA
+
+        Permite utilizar:
+        - @Entity
+        - @Table
+        - @Id
+        - @Column
+        - Hibernate
+        - JpaRepository
+        -->
+		<dependency>
+
+			<groupId>org.springframework.boot</groupId>
+
+			<artifactId>
+				spring-boot-starter-data-jpa
+			</artifactId>
+
+		</dependency>
+
+
+		<!--
+
+        VALIDATION
+
+        Permitirá validar datos con anotaciones como:
+        - @NotBlank
+        - @NotNull
+        - @Size
+        - @Positive
+        -->
+		<dependency>
+
+			<groupId>org.springframework.boot</groupId>
+
+			<artifactId>
+				spring-boot-starter-validation
+			</artifactId>
+
+		</dependency>
+
+
+		<!--
+
+        MYSQL DRIVER
+
+        Permitirá conectar posteriormente Spring Boot con MySQL.
+        -->
+		<dependency>
+
+			<groupId>com.mysql</groupId>
+
+			<artifactId>mysql-connector-j</artifactId>
+
+			<!-- Solo se necesita cuando se ejecuta la aplicación -->
+			<scope>runtime</scope>
+
+		</dependency>
+
+
+		<!--
+
+        LOMBOK
+
+        Genera automáticamente:
+        - Getters.
+        - Setters.
+        - Constructores.
+        - Otros métodos repetitivos.
+        -->
+		<dependency>
+
+			<groupId>org.projectlombok</groupId>
+
+			<artifactId>lombok</artifactId>
+
+			<!-- No debe incluirse como dependencia del programa final -->
+			<optional>true</optional>
+
+		</dependency>
+
+
+		<!--
+
+        DEVTOOLS
+
+        Facilita el desarrollo y reinicia la aplicación al detectar cambios.
+        -->
+		<dependency>
+
+			<groupId>org.springframework.boot</groupId>
+
+			<artifactId>spring-boot-devtools</artifactId>
+
+			<scope>runtime</scope>
+
+			<optional>true</optional>
+
+		</dependency>
+
+
+		<!--
+
+        PRUEBAS DE SPRING MVC
+
+        Dependencia generada por Spring Initializr para probar:
+        - Controladores.
+        - Endpoints.
+        - Aplicaciones Spring MVC.
+        -->
+		<dependency>
+
+			<groupId>org.springframework.boot</groupId>
+
+			<artifactId>
+				spring-boot-starter-webmvc-test
+			</artifactId>
+
+			<scope>test</scope>
+
+		</dependency>
+
+		<!--
+		============================================================
+		SPRING SECURITY
+		============================================================
+		Permite implementar autenticación, autorización y
+		protección de endpoints.
+		-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+
+
+		<!--
+
+        PRUEBAS DE SPRING DATA JPA
+
+        Permitirá probar posteriormente repositorios y operaciones JPA.
+        -->
+		<dependency>
+
+			<groupId>org.springframework.boot</groupId>
+
+			<artifactId>
+				spring-boot-starter-data-jpa-test
+			</artifactId>
+
+			<scope>test</scope>
+
+		</dependency>
+
+		<!-- ================================================================
+     	OAUTH2 RESOURCE SERVER
+     	Permite validar tokens JWT enviados como Bearer Token.
+     	================================================================ -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-oauth2-resource-server</artifactId>
+		</dependency>
+
+
+	</dependencies>
+
+
+	<!--
+    ========================================================================
+    CONFIGURACIÓN DE COMPILACIÓN
+    ========================================================================
+    -->
+
+	<build>
+
+		<plugins>
+
+			<!--
+            Permite ejecutar y empaquetar el proyecto
+            como una aplicación Spring Boot.
+            -->
+			<plugin>
+
+				<groupId>org.springframework.boot</groupId>
+
+				<artifactId>
+					spring-boot-maven-plugin
+				</artifactId>
+
+				<!-- Lombok no debe incluirse en el archivo ejecutable final -->
+				<configuration>
+
+					<excludes>
+
+						<exclude>
+
+							<groupId>org.projectlombok</groupId>
+
+							<artifactId>lombok</artifactId>
+
+						</exclude>
+
+					</excludes>
+
+				</configuration>
+
+			</plugin>
+
+		</plugins>
+
+	</build>
+
+</project>

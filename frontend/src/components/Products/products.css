@@ -1,0 +1,293 @@
+/* ==========================================================================
+   ARCHIVO: Products.css
+   DESCRIPCIÓN:
+   Estilos del componente Products.
+   ========================================================================== */
+
+/* Contenedor general de los productos destacados. */
+.products {
+    padding: 90px 8%;
+    background: #f5f7fa;
+    text-align: center;
+}
+
+/* Etiqueta pequeña situada encima del título. */
+.products-eyebrow {
+    color: #0879c9;
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+}
+
+/* Título principal de la sección. */
+.products h2 {
+    margin-top: 10px;
+    color: #123f6d;
+    font-size: 40px;
+}
+
+/* Descripción introductoria. */
+.products-description {
+    margin-top: 15px;
+    color: #667788;
+    font-size: 18px;
+}
+
+/* Cuadrícula que mantiene las tres tarjetas alineadas. */
+.products-container {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 28px;
+    max-width: 1180px;
+    margin: 48px auto 0;
+}
+
+/* Tarjeta completa del producto. */
+.product-card {
+    overflow: hidden;
+    background: #fff;
+    border: 1px solid #e2e8ef;
+    border-radius: 18px;
+    box-shadow: 0 8px 24px rgba(22, 57, 91, 0.09);
+    text-align: left;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Elevación suave al pasar el cursor. */
+.product-card:hover {
+    box-shadow: 0 16px 34px rgba(22, 57, 91, 0.16);
+    transform: translateY(-8px);
+}
+
+/* Área de imagen con una proporción uniforme para todas las fotografías. */
+.product-image {
+    height: 230px;
+    overflow: hidden;
+    background: #eef3f7;
+}
+
+.product-image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.45s ease;
+}
+
+/* Acercamiento sutil que da protagonismo a la fotografía. */
+.product-card:hover .product-image img {
+    transform: scale(1.05);
+}
+
+/* Contenedor de textos y botón. */
+.product-content {
+    display: flex;
+    min-height: 245px;
+    padding: 26px;
+    flex-direction: column;
+}
+
+/* Categoría del producto. */
+.product-category {
+    color: #0879c9;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.7px;
+    text-transform: uppercase;
+}
+
+.product-card h3 {
+    margin-top: 8px;
+    color: #143c62;
+    font-size: 23px;
+}
+
+.product-card p {
+    margin: 13px 0 24px;
+    color: #607080;
+    line-height: 1.65;
+}
+
+/* Botón con icono que se mantiene alineado al final de cada tarjeta. */
+.product-card button {
+    display: inline-flex;
+    gap: 10px;
+    align-items: center;
+    width: fit-content;
+    margin-top: auto;
+    padding: 11px 0;
+    color: #0b67ad;
+    background: transparent;
+    border: 0;
+    border-bottom: 2px solid #b9d9ef;
+    font-size: 14px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: color 0.25s ease, border-color 0.25s ease, gap 0.25s ease;
+}
+
+.product-card button:hover {
+    gap: 14px;
+    color: #064b80;
+    border-color: #0879c9;
+}
+
+/* En tablet se muestran dos tarjetas por fila. */
+@media (max-width: 900px) {
+    .products-container {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* En teléfonos se utiliza una sola columna. */
+@media (max-width: 620px) {
+    .products {
+        padding: 70px 24px;
+    }
+
+    .products h2 {
+        font-size: 34px;
+    }
+
+    .products-container {
+        grid-template-columns: 1fr;
+    }
+
+    .product-image {
+        height: 220px;
+    }
+
+
+
+    /* ==========================================================================
+   ESTADOS DE LA CONSULTA
+   ========================================================================== */
+
+.products-status {
+    /* Limita el ancho del mensaje */
+    max-width: 800px;
+
+    /* Centra el bloque */
+    margin: 50px auto 0;
+
+    /* Espacio interior */
+    padding: 24px;
+
+    /* Fondo azul muy claro */
+    background-color: #f2f9ff;
+
+    /* Borde suave */
+    border: 1px solid #d6eaf8;
+
+    /* Bordes redondeados */
+    border-radius: 14px;
+
+    /* Color del texto */
+    color: #416177;
+
+    /* Texto centrado */
+    text-align: center;
+
+    /* Texto destacado */
+    font-weight: 600;
+}
+
+/* Mensaje de error */
+.products-error {
+    /* Fondo rojo suave */
+    background-color: #fff1f1;
+
+    /* Borde rojo suave */
+    border-color: #f2caca;
+
+    /* Color rojo oscuro */
+    color: #a33a3a;
+}
+
+
+/* ==========================================================================
+   CATEGORÍA
+   ========================================================================== */
+
+.product-category {
+    /* Se comporta como una etiqueta */
+    display: inline-block;
+
+    /* Fondo azul claro */
+    background-color: #e6f4ff;
+
+    /* Texto azul */
+    color: #0879c9;
+
+    /* Espacio interior */
+    padding: 6px 11px;
+
+    /* Forma redondeada */
+    border-radius: 999px;
+
+    /* Tamaño pequeño */
+    font-size: 12px;
+
+    /* Texto destacado */
+    font-weight: 700;
+
+    /* Separación inferior */
+    margin-bottom: 13px;
+}
+
+
+/* ==========================================================================
+   PRECIO Y EXISTENCIAS
+   ========================================================================== */
+
+.product-price {
+    /* Se muestra en una línea independiente */
+    display: block;
+
+    /* Color azul oscuro */
+    color: #063f70;
+
+    /* Tamaño destacado */
+    font-size: 22px;
+
+    /* Separación inferior */
+    margin-bottom: 10px;
+}
+
+/* Estado general del inventario */
+.product-stock {
+    /* Se muestra en una línea independiente */
+    display: block;
+
+    /* Tamaño menor */
+    font-size: 13px;
+
+    /* Separación inferior */
+    margin-bottom: 22px;
+}
+
+/* Producto disponible */
+.product-stock.available {
+    color: #27804a;
+}
+
+/* Producto agotado */
+.product-stock.unavailable {
+    color: #b23a3a;
+}
+
+/* Botón deshabilitado */
+.product-content button:disabled {
+    /* Fondo gris */
+    background-color: #aab7c2;
+
+    /* Evita el cursor de acción */
+    cursor: not-allowed;
+
+    /* Elimina el efecto de movimiento */
+    transform: none;
+}
+
+
+}

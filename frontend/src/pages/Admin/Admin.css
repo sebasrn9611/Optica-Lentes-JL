@@ -1,0 +1,353 @@
+/* ========================================================================== 
+   ARCHIVO: Admin.css
+   DESCRIPCIÓN: Estilos del panel administrativo de la óptica.
+   ========================================================================== */
+
+/* Variables locales para mantener consistentes los colores del panel. */
+.admin-page {
+    --admin-primary: #0b4f86;
+    --admin-dark: #062f55;
+    --admin-background: #f1f5f9;
+    display: flex;
+    min-height: 100vh;
+    background: var(--admin-background);
+}
+
+/* Menú lateral fijo en el lado izquierdo de la pantalla. */
+.admin-sidebar {
+    position: fixed;
+    z-index: 30;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    width: 270px;
+    height: 100vh;
+    padding: 24px 18px;
+    color: #dbeafe;
+    background: linear-gradient(180deg, var(--admin-dark), #082746);
+}
+
+/* Contenedor del logo dentro del menú. */
+.admin-brand {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 8px 23px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.admin-brand img {
+    width: auto;
+    height: 52px;
+    padding: 6px 10px;
+    background: #fff;
+    border-radius: 8px;
+    object-fit: contain;
+}
+
+/* El botón de cierre solo se muestra dentro del menú móvil. */
+.admin-brand button {
+    display: none;
+    color: #fff;
+    background: transparent;
+    border: 0;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+/* Resumen compacto del usuario administrador. */
+.admin-profile {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    margin: 24px 6px;
+}
+
+.admin-profile-avatar,
+.admin-header-user div {
+    display: grid;
+    width: 42px;
+    height: 42px;
+    color: var(--admin-dark);
+    background: #bfdbfe;
+    border-radius: 50%;
+    font-weight: 800;
+    place-items: center;
+}
+
+.admin-profile strong,
+.admin-profile span {
+    display: block;
+}
+
+.admin-profile span {
+    margin-top: 4px;
+    color: #99b9d7;
+    font-size: 12px;
+}
+
+/* Lista de botones para cambiar entre módulos. */
+.admin-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.admin-menu button,
+.admin-menu a,
+.admin-logout {
+    display: flex;
+    gap: 13px;
+    align-items: center;
+    width: 100%;
+    padding: 13px 15px;
+    color: #bdd1e5;
+    background: transparent;
+    border: 0;
+    border-radius: 9px;
+    font: inherit;
+    text-align: left;
+    text-decoration: none;
+    cursor: pointer;
+    transition: color 0.25s, background 0.25s, transform 0.25s;
+}
+
+.admin-menu button:hover,
+.admin-menu button.active,
+.admin-menu a:hover,
+.admin-menu a.active {
+    color: #fff;
+    background: rgba(71, 157, 227, 0.22);
+}
+
+.admin-menu button.active,
+.admin-menu a.active {
+    box-shadow: inset 3px 0 #64b5f6;
+}
+
+.admin-menu svg,
+.admin-logout svg {
+    flex: 0 0 19px;
+    font-size: 18px;
+}
+
+/* El cierre de sesión permanece en la parte inferior del menú. */
+.admin-logout {
+    margin-top: auto;
+    color: #f5b9b9;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 0;
+}
+
+.admin-logout:hover {
+    color: #fff;
+    transform: translateX(4px);
+}
+
+/* Contenido principal desplazado para dejar espacio al menú fijo. */
+.admin-main {
+    width: calc(100% - 270px);
+    min-width: 0;
+    margin-left: 270px;
+}
+
+/* Encabezado superior del panel. */
+.admin-header {
+    display: flex;
+    align-items: center;
+    min-height: 92px;
+    padding: 18px 38px;
+    background: #fff;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.admin-header p {
+    margin-bottom: 4px;
+    color: #789;
+    font-size: 13px;
+    text-transform: uppercase;
+}
+
+.admin-header h1 {
+    color: #183a59;
+    font-size: 27px;
+}
+
+.admin-header-user {
+    display: flex;
+    gap: 11px;
+    align-items: center;
+    margin-left: auto;
+    color: #40566b;
+    font-weight: 700;
+}
+
+.admin-menu-toggle {
+    display: none;
+    margin-right: 15px;
+    padding: 8px;
+    color: var(--admin-primary);
+    background: #eaf3fb;
+    border: 0;
+    border-radius: 7px;
+    font-size: 21px;
+    cursor: pointer;
+}
+
+/* Espacio interior donde se carga cada módulo. */
+.admin-content {
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 34px 38px;
+}
+
+/* Cuadrícula de indicadores generales. */
+.admin-stats {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.admin-stat-card {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    min-width: 0;
+    padding: 23px;
+    background: #fff;
+    border: 1px solid #e4eaf0;
+    border-radius: 14px;
+    box-shadow: 0 5px 16px rgba(15, 45, 75, 0.05);
+}
+
+.admin-stat-icon {
+    display: grid;
+    flex: 0 0 52px;
+    width: 52px;
+    height: 52px;
+    border-radius: 12px;
+    font-size: 23px;
+    place-items: center;
+}
+
+/* Variaciones de color para identificar cada indicador. */
+.admin-stat-icon--blue { color: #1565c0; background: #e3f2fd; }
+.admin-stat-icon--green { color: #16805c; background: #e2f7ef; }
+.admin-stat-icon--purple { color: #7651b5; background: #f0eafa; }
+.admin-stat-icon--orange { color: #c06b16; background: #fff0de; }
+
+.admin-stat-card p,
+.admin-stat-card small {
+    display: block;
+    color: #718295;
+}
+
+.admin-stat-card strong {
+    display: block;
+    margin: 5px 0;
+    overflow-wrap: anywhere;
+    color: #173955;
+    font-size: 23px;
+}
+
+.admin-stat-card small { font-size: 12px; }
+
+/* Cuadrícula inferior para citas e inventario. */
+.admin-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 0.8fr;
+    gap: 24px;
+    margin-top: 28px;
+}
+
+.admin-panel-card,
+.module-placeholder {
+    background: #fff;
+    border: 1px solid #e4eaf0;
+    border-radius: 14px;
+    box-shadow: 0 5px 16px rgba(15, 45, 75, 0.05);
+}
+
+.admin-panel-card { padding: 26px; }
+
+.admin-card-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+}
+
+.admin-card-heading h2 { color: #173955; font-size: 20px; }
+.admin-card-heading p { margin-top: 5px; color: #8291a0; font-size: 13px; }
+.admin-card-heading > svg { color: #75a9d4; font-size: 24px; }
+
+/* Permite desplazar la tabla horizontalmente en pantallas estrechas. */
+.admin-table-wrapper { overflow-x: auto; }
+.admin-panel-card table { width: 100%; border-collapse: collapse; }
+.admin-panel-card th,
+.admin-panel-card td { padding: 13px 10px; border-bottom: 1px solid #edf1f5; text-align: left; white-space: nowrap; }
+.admin-panel-card th { color: #718295; font-size: 12px; text-transform: uppercase; }
+.admin-panel-card td { color: #40566b; font-size: 14px; }
+
+/* Etiquetas para diferenciar el estado de una cita. */
+.admin-status { padding: 5px 9px; border-radius: 20px; font-size: 12px; font-weight: 700; }
+.admin-status--confirmada { color: #147055; background: #dcf5eb; }
+.admin-status--pendiente { color: #9b651d; background: #fff1d6; }
+
+/* Lista de productos con pocas existencias. */
+.stock-list { display: flex; flex-direction: column; }
+.stock-item { display: flex; gap: 15px; align-items: center; justify-content: space-between; padding: 15px 0; border-bottom: 1px solid #edf1f5; }
+.stock-item:last-child { border-bottom: 0; }
+.stock-item strong,
+.stock-item span { display: block; }
+.stock-item strong { color: #314a61; font-size: 14px; }
+.stock-item div span { margin-top: 5px; color: #8291a0; font-size: 12px; }
+.stock-amount { flex: 0 0 auto; padding: 5px 8px; color: #b04a37; background: #feeae6; border-radius: 6px; font-size: 11px; font-weight: 700; }
+
+/* Estado temporal que se muestra en los módulos pendientes de backend. */
+.module-placeholder {
+    display: flex;
+    min-height: 480px;
+    padding: 45px;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.module-placeholder-icon { display: grid; width: 78px; height: 78px; color: #1565c0; background: #e3f2fd; border-radius: 20px; font-size: 34px; place-items: center; }
+.module-placeholder h2 { margin-top: 23px; color: #173955; font-size: 29px; }
+.module-placeholder p { max-width: 520px; margin-top: 12px; color: #6e8091; font-size: 17px; line-height: 1.6; }
+.module-placeholder strong { margin-top: 25px; color: #1565c0; }
+.module-placeholder small { margin-top: 12px; color: #8a99a7; }
+
+/* El fondo móvil permanece oculto en escritorio. */
+.admin-overlay { display: none; }
+
+/* Ajuste de columnas para pantallas medianas. */
+@media (max-width: 1200px) {
+    .admin-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .admin-grid { grid-template-columns: 1fr; }
+}
+
+/* El menú se transforma en un panel desplegable para tablet y teléfono. */
+@media (max-width: 850px) {
+    .admin-sidebar { transform: translateX(-100%); transition: transform 0.3s ease; }
+    .admin-sidebar--open { transform: translateX(0); }
+    .admin-brand button,
+    .admin-menu-toggle { display: grid; place-items: center; }
+    .admin-main { width: 100%; margin-left: 0; }
+    .admin-overlay { position: fixed; z-index: 20; inset: 0; display: block; width: 100%; height: 100%; background: rgba(5, 23, 41, 0.55); border: 0; }
+}
+
+/* Distribución en una columna y espacios reducidos para teléfonos. */
+@media (max-width: 600px) {
+    .admin-header { padding: 16px 20px; }
+    .admin-header-user span { display: none; }
+    .admin-header h1 { font-size: 21px; }
+    .admin-content { padding: 24px 18px; }
+    .admin-stats { grid-template-columns: 1fr; }
+    .admin-panel-card { padding: 21px 17px; }
+    .module-placeholder { min-height: 400px; padding: 35px 22px; }
+}

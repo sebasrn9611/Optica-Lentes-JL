@@ -1,0 +1,66 @@
+# ============================================================
+# ÓPTICA LENTES J.L.
+# Archivos que Git NO debe subir al repositorio
+# ============================================================
+
+
+# ---------------- FRONTEND: React / Vite ----------------
+
+# Dependencias instaladas por npm
+frontend/node_modules/
+
+# Build generado por Vite
+frontend/dist/
+
+
+# ---------------- BACKEND: Spring Boot ----------------
+
+# Archivos compilados por Maven
+backend/target/
+
+# Archivos Java compilados
+*.class
+
+# Paquetes generados
+*.jar
+*.war
+
+
+# ---------------- VARIABLES DE ENTORNO ----------------
+
+# Archivos que pueden contener contraseñas o secretos
+.env
+.env.local
+.env.development.local
+.env.production.local
+
+frontend/.env
+frontend/.env.local
+
+backend/.env
+backend/.env.local
+
+
+# ---------------- INTELLIJ IDEA ----------------
+
+.idea/
+*.iml
+out/
+
+
+# ---------------- VISUAL STUDIO CODE ----------------
+
+.vscode/
+
+
+# ---------------- WINDOWS / SISTEMA ----------------
+
+Thumbs.db
+.DS_Store
+
+
+# ---------------- ARCHIVOS TEMPORALES ----------------
+
+*.log
+*.tmp
+*.temp

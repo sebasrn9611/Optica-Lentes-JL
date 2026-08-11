@@ -1,0 +1,437 @@
+/* ==========================================================================
+   ARCHIVO: Navbar.css
+
+   DESCRIPCIÓN:
+   Estilos de la barra de navegación principal de Óptica Lentes J.L.
+   ========================================================================== */
+
+
+/* ==========================================================================
+   BARRA DE NAVEGACIÓN PRINCIPAL
+   ========================================================================== */
+
+.navbar {
+    /* Mantiene el Navbar visible cuando el usuario baja por la página */
+    position: sticky;
+
+    /* Lo ubica en la parte superior */
+    top: 0;
+
+    /* Ocupa todo el ancho disponible */
+    width: 100%;
+
+    /* Organiza el logo, el menú y las acciones en una sola fila */
+    display: flex;
+
+    /* Distribuye el contenido horizontalmente */
+    justify-content: space-between;
+
+    /* Centra verticalmente todos los elementos */
+    align-items: center;
+
+    /* Espacio interno del Navbar */
+    padding: 14px 55px;
+
+    /* Fondo blanco, más limpio y elegante */
+    background-color: #ffffff;
+
+    /* Línea inferior muy suave */
+    border-bottom: 1px solid #e8eef5;
+
+    /* Sombra ligera para separar el Navbar del contenido */
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.06);
+
+    /* Mantiene el Navbar por encima de las demás secciones */
+    z-index: 1000;
+}
+
+
+/* ==========================================================================
+   CONTENEDOR DEL LOGO
+   ========================================================================== */
+
+.navbar-logo {
+    /* Permite alinear correctamente la imagen */
+    display: flex;
+
+    /* Centra el logo verticalmente */
+    align-items: center;
+}
+
+
+/* ==========================================================================
+   LOGO OFICIAL
+   ========================================================================== */
+
+.logo-image {
+    /* Altura del logo */
+    height: 72px;
+
+    /* Conserva la proporción original */
+    width: auto;
+
+    /* Evita deformaciones */
+    object-fit: contain;
+
+    /* Elimina espacios adicionales debajo de la imagen */
+    display: block;
+
+    /* Animación suave */
+    transition: transform 0.3s ease;
+}
+
+
+/* Efecto sutil al pasar el cursor sobre el logo */
+.logo-image:hover {
+    transform: scale(1.04);
+}
+
+
+/* ==========================================================================
+   MENÚ DE NAVEGACIÓN
+   ========================================================================== */
+
+.navbar-links {
+    /* Coloca los enlaces horizontalmente */
+    display: flex;
+
+    /* Elimina los puntos de la lista */
+    list-style: none;
+
+    /* Elimina márgenes y espacios predeterminados */
+    margin: 0;
+    padding: 0;
+
+    /* Espacio entre enlaces */
+    gap: 34px;
+
+    /* Centra los elementos verticalmente */
+    align-items: center;
+}
+
+
+/* Enlaces del menú */
+.navbar-links a {
+    /* Elimina el subrayado */
+    text-decoration: none;
+
+    /* Color gris oscuro para fondo blanco */
+    color: #25364a;
+
+    /* Tamaño del texto */
+    font-size: 17px;
+
+    /* Peso medio */
+    font-weight: 500;
+
+    /* Permite dibujar la línea inferior */
+    position: relative;
+
+    /* Espacio inferior */
+    padding-bottom: 7px;
+
+    /* Animación suave */
+    transition: color 0.3s ease;
+}
+
+
+/* Línea animada debajo de cada enlace */
+.navbar-links a::after {
+    /* Crea un elemento decorativo vacío */
+    content: "";
+
+    /* Lo posiciona debajo del texto */
+    position: absolute;
+
+    /* Lo ubica en la parte inferior */
+    bottom: 0;
+
+    /* Comienza desde el centro */
+    left: 50%;
+
+    /* Inicialmente no tiene ancho */
+    width: 0;
+
+    /* Altura de la línea */
+    height: 2px;
+
+    /* Color corporativo */
+    background-color: #0879c9;
+
+    /* Ajusta el punto de inicio */
+    transform: translateX(-50%);
+
+    /* Animación del ancho */
+    transition: width 0.3s ease;
+}
+
+
+/* Cambio de color al pasar el cursor */
+.navbar-links a:hover {
+    color: #0879c9;
+}
+
+
+/* Muestra la línea azul al pasar el cursor */
+.navbar-links a:hover::after {
+    width: 100%;
+}
+
+
+/* ==========================================================================
+   ACCIONES DEL LADO DERECHO
+   ========================================================================== */
+
+.navbar-actions {
+    /* Coloca iconos y botón horizontalmente */
+    display: flex;
+
+    /* Centra los elementos verticalmente */
+    align-items: center;
+
+    /* Espacio entre elementos */
+    gap: 18px;
+}
+
+
+/* Iconos de buscar, carrito y usuario */
+.action-icon {
+    /* Color gris oscuro para que se vea sobre fondo blanco */
+    color: #25364a;
+
+    /* Tamaño del icono */
+    font-size: 20px;
+
+    /* Cambia el cursor */
+    cursor: pointer;
+
+    /* Animación suave */
+    transition:
+        color 0.3s ease,
+        transform 0.3s ease;
+}
+
+
+/* Efecto al pasar el cursor sobre los iconos */
+.action-icon:hover {
+    /* Color corporativo */
+    color: #0879c9;
+
+    /* Eleva ligeramente el icono */
+    transform: translateY(-2px);
+}
+
+
+/* ==========================================================================
+   BOTÓN DE INICIAR SESIÓN
+   ========================================================================== */
+
+.btn-login {
+    /* Fondo azul oscuro */
+    background-color: #063f70;
+
+    /* Texto blanco */
+    color: #ffffff;
+
+    /* Elimina el borde predeterminado */
+    border: none;
+
+    /* Espacio interior */
+    padding: 13px 22px;
+
+    /* Bordes redondeados */
+    border-radius: 10px;
+
+    /* Cambia el cursor */
+    cursor: pointer;
+
+    /* Texto destacado */
+    font-weight: 700;
+
+    /* Elimina el subrayado del enlace */
+    text-decoration: none;
+
+    /* Animación suave */
+    transition:
+        background-color 0.3s ease,
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+
+/* Efecto del botón al pasar el cursor */
+.btn-login:hover {
+    /* Azul más claro */
+    background-color: #0879c9;
+
+    /* Eleva el botón */
+    transform: translateY(-2px);
+
+    /* Sombra suave */
+    box-shadow: 0 8px 18px rgba(8, 121, 201, 0.22);
+}
+
+
+/* ==========================================================================
+   DISEÑO RESPONSIVE PARA TABLET
+   ========================================================================== */
+
+@media (max-width: 1100px) {
+    .navbar {
+        /* Reduce el espacio lateral */
+        padding: 14px 28px;
+    }
+
+    .navbar-links {
+        /* Reduce la separación del menú */
+        gap: 20px;
+    }
+
+    .navbar-links a {
+        /* Reduce ligeramente el texto */
+        font-size: 15px;
+    }
+
+    .logo-image {
+        /* Reduce el logo */
+        height: 62px;
+    }
+}
+
+
+/* ==========================================================================
+   DISEÑO RESPONSIVE PARA CELULAR
+   ========================================================================== */
+
+@media (max-width: 768px) {
+    .navbar {
+        /* Reduce los espacios */
+        padding: 12px 20px;
+    }
+
+    .logo-image {
+        /* Logo más pequeño */
+        height: 55px;
+    }
+
+    .navbar-links {
+        /* Oculta temporalmente el menú en celular */
+        display: none;
+    }
+
+    .action-icon {
+        /* Oculta temporalmente los iconos secundarios */
+        display: none;
+    }
+
+    .btn-login {
+        /* Reduce el tamaño del botón */
+        padding: 11px 16px;
+        font-size: 14px;
+    }
+}
+
+/* ========================================================================== 
+   MENÚ FUNCIONAL Y RESPONSIVE
+   Estas reglas actualizan el comportamiento móvil de la versión inicial.
+   ========================================================================== */
+
+/* Elementos exclusivos del menú para teléfonos. */
+.navbar-mobile-login,
+.navbar-toggle,
+.navbar-overlay {
+    display: none;
+}
+
+/* El logo y las acciones permanecen sobre el fondo móvil. */
+.navbar-logo,
+.navbar-actions {
+    position: relative;
+    z-index: 1002;
+}
+
+.navbar-toggle {
+    width: 42px;
+    height: 42px;
+    padding: 0;
+    color: #063f70;
+    background: #eef6fc;
+    border: 1px solid #d9eaf6;
+    border-radius: 9px;
+    font-size: 21px;
+    cursor: pointer;
+    place-items: center;
+}
+
+@media (max-width: 768px) {
+    /* Panel desplegable situado debajo de la barra. */
+    .navbar-links {
+        position: absolute;
+        z-index: 1002;
+        top: 100%;
+        right: 0;
+        left: 0;
+        display: flex;
+        gap: 0;
+        align-items: stretch;
+        padding: 12px 20px 20px;
+        background: #fff;
+        border-top: 1px solid #edf2f7;
+        box-shadow: 0 14px 24px rgba(20, 52, 82, 0.12);
+        flex-direction: column;
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(-12px);
+        transition: opacity 0.25s ease, transform 0.25s ease;
+    }
+
+    /* Estado visible activado por React. */
+    .navbar-links--open {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0);
+    }
+
+    .navbar-links a {
+        display: block;
+        padding: 14px 8px;
+        font-size: 16px;
+    }
+
+    .navbar-links a::after {
+        display: none;
+    }
+
+    /* El acceso de escritorio se reemplaza por el acceso del menú. */
+    .btn-login {
+        display: none;
+    }
+
+    .navbar-mobile-login {
+        display: block;
+        margin-top: 8px;
+    }
+
+    .navbar-mobile-login a {
+        color: #fff;
+        background: #063f70;
+        border-radius: 9px;
+        text-align: center;
+    }
+
+    .navbar-toggle {
+        display: grid;
+    }
+
+    /* Capa oscura que permite cerrar el menú tocando fuera. */
+    .navbar-overlay {
+        position: fixed;
+        z-index: 1001;
+        inset: 0;
+        display: block;
+        width: 100%;
+        height: 100%;
+        background: rgba(15, 35, 55, 0.35);
+        border: 0;
+    }
+}

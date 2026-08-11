@@ -1,0 +1,304 @@
+/* ==========================================================================
+   ARCHIVO: AdminProducts.css
+   ========================================================================== */
+
+.admin-products-page {
+    min-height: 100vh;
+
+    padding: 45px;
+
+    background-color: #f4f8fc;
+}
+
+.admin-products-header {
+    margin-bottom: 35px;
+}
+
+.admin-products-header span {
+    color: #0879c9;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+}
+
+.admin-products-header h1 {
+    margin: 8px 0;
+
+    color: #063f70;
+
+    font-size: 40px;
+}
+
+.admin-products-header p {
+    color: #687d8e;
+}
+
+.admin-products-grid {
+    display: grid;
+
+    grid-template-columns:
+        minmax(320px, 0.8fr)
+        minmax(500px, 1.4fr);
+
+    gap: 28px;
+}
+
+.admin-products-panel {
+    background-color: #ffffff;
+
+    border: 1px solid #e2ecf4;
+
+    border-radius: 20px;
+
+    padding: 30px;
+
+    box-shadow:
+        0 12px 32px
+        rgba(6, 63, 112, 0.07);
+}
+
+.admin-products-panel h2 {
+    color: #063f70;
+
+    margin-bottom: 25px;
+}
+
+.admin-product-form {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 18px;
+}
+
+.admin-product-field {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+}
+
+.admin-product-field label {
+    color: #324b5e;
+
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.admin-product-field input,
+.admin-product-field select,
+.admin-product-field textarea {
+    width: 100%;
+
+    padding: 13px 14px;
+
+    border: 1px solid #d8e4ed;
+
+    border-radius: 10px;
+
+    outline: none;
+
+    font-family: inherit;
+}
+
+.admin-product-field select {
+    background-color: #ffffff;
+    cursor: pointer;
+}
+
+.admin-product-field textarea {
+    min-height: 110px;
+
+    resize: vertical;
+}
+
+.admin-product-field input:focus,
+.admin-product-field select:focus,
+.admin-product-field textarea:focus {
+    border-color: #0879c9;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(8, 121, 201, 0.1);
+}
+
+.admin-product-checkbox {
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    color: #435d70;
+
+    font-weight: 600;
+}
+
+.admin-product-submit {
+    padding: 15px;
+
+    background-color: #063f70;
+
+    color: white;
+
+    border: none;
+
+    border-radius: 11px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+.admin-product-submit:hover {
+    background-color: #0879c9;
+}
+
+.admin-product-message {
+    padding: 12px;
+
+    background-color: #eaf6ff;
+
+    color: #075c9f;
+
+    border-radius: 10px;
+}
+
+.admin-products-table-wrapper {
+    overflow-x: auto;
+}
+
+.admin-products-table {
+    width: 100%;
+
+    border-collapse: collapse;
+}
+
+.admin-products-table th,
+.admin-products-table td {
+    padding: 15px;
+
+    text-align: left;
+
+    border-bottom:
+        1px solid #e8eef3;
+}
+
+.admin-products-table th {
+    color: #62798a;
+
+    font-size: 13px;
+
+    text-transform: uppercase;
+}
+
+.admin-products-table td {
+    color: #30495c;
+}
+
+@media (max-width: 1000px) {
+    .admin-products-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+    .admin-products-page {
+        padding: 28px 18px;
+    }
+
+
+    /* ==========================================================================
+   ACCIONES DE PRODUCTOS
+   ========================================================================== */
+
+.admin-product-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+
+/* ==========================================================================
+   BOTÓN EDITAR
+   ========================================================================== */
+
+.admin-product-edit {
+    padding: 8px 13px;
+
+    border: none;
+    border-radius: 8px;
+
+    background-color: #e5f3ff;
+
+    color: #0879c9;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.admin-product-edit:hover {
+    background-color: #0879c9;
+
+    color: #ffffff;
+}
+
+
+/* ==========================================================================
+   BOTÓN ELIMINAR
+   ========================================================================== */
+
+.admin-product-delete {
+    padding: 8px 13px;
+
+    border: none;
+    border-radius: 8px;
+
+    background-color: #ffeaea;
+
+    color: #c13d3d;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.admin-product-delete:hover {
+    background-color: #c13d3d;
+
+    color: #ffffff;
+}
+
+
+/* ==========================================================================
+   CANCELAR EDICIÓN
+   ========================================================================== */
+
+.admin-product-cancel {
+    padding: 13px;
+
+    border: 1px solid #ccd9e2;
+    border-radius: 10px;
+
+    background-color: #ffffff;
+
+    color: #506777;
+
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+.admin-product-cancel:hover {
+    background-color: #eef3f6;
+}
+}

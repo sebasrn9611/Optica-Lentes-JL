@@ -1,0 +1,104 @@
+/* ==========================================================================
+   ARCHIVO: Services.css
+   DESCRIPCIÓN:
+   Estilos del componente Services.
+   ========================================================================== */
+
+/* Sección principal */
+.services{
+
+    padding:80px;
+
+    text-align:center;
+
+    background:#FFFFFF;
+
+}
+
+/* Título */
+.services h2{
+
+    font-size:40px;
+
+    color:#1565C0;
+
+}
+
+/* Descripción */
+.services-description{
+
+    margin-top:15px;
+
+    color:#666;
+
+    font-size:18px;
+
+}
+
+/* Contenedor de tarjetas */
+.services-container{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:35px;
+
+    margin-top:50px;
+
+    flex-wrap:wrap;
+
+}
+
+/* Tarjeta */
+.service-card{
+
+    width:300px;
+
+    background:#F5F7FA;
+
+    border-radius:15px;
+
+    padding:35px;
+
+    box-shadow:0 5px 15px rgba(0,0,0,.1);
+
+    transition:.3s;
+
+}
+
+/* Efecto al pasar el mouse */
+.service-card:hover{
+
+    transform:translateY(-10px);
+
+}
+
+/* Icono */
+.service-icon{
+
+    font-size:55px;
+
+    color:#1565C0;
+
+    margin-bottom:20px;
+
+}
+
+/* Título de la tarjeta */
+.service-card h3{
+
+    margin-bottom:15px;
+
+    color:#1565C0;
+
+}
+
+/* Texto */
+.service-card p{
+
+    color:#555;
+
+    line-height:1.6;
+
+}
