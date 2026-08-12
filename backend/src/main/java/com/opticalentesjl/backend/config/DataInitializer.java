@@ -7,6 +7,7 @@ package com.opticalentesjl.backend.config;
 import com.opticalentesjl.backend.entity.User;
 import com.opticalentesjl.backend.repository.UserRepository;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -18,58 +19,53 @@ import org.springframework.stereotype.Component;
 // INICIALIZADOR DE DATOS
 // ============================================================================
 
-/*
- * @Component permite que Spring detecte automáticamente esta clase.
- *
- * CommandLineRunner ejecuta el método run()
- * cuando Spring Boot termina de preparar el contexto.
- */
 @Component
 public class DataInitializer implements CommandLineRunner {
 
-
-    // Repositorio para trabajar con la tabla users.
+    // Repositorio de usuarios.
     private final UserRepository userRepository;
 
-
-    // Encoder que configuramos utilizando BCrypt.
+    // BCrypt.
     private final PasswordEncoder passwordEncoder;
+
+
+    // ========================================================================
+    // VARIABLES DE CONFIGURACIÓN
+    // ========================================================================
+
+    @Value("${app.admin.email}")
+    private String adminEmail;
+
+    @Value("${app.admin.password}")
+    private String adminPassword;
+
+    @Value("${app.admin.name}")
+    private String adminName;
 
 
     // ========================================================================
     // CONSTRUCTOR
     // ========================================================================
 
-    /*
-     * Spring inyecta automáticamente las dependencias.
-     */
     public DataInitializer(
             UserRepository userRepository,
             PasswordEncoder passwordEncoder
     ) {
 
         this.userRepository = userRepository;
-
         this.passwordEncoder = passwordEncoder;
     }
 
 
     // ========================================================================
-    // CREAR ADMINISTRADOR
+    // CREAR ADMINISTRADOR INICIAL
     // ========================================================================
 
     @Override
     public void run(String... args) {
 
         /*
-         * Correo inicial del administrador.
-         */
-        String adminEmail =
-                "admin@opticalentesjl.com";
-
-
-        /*
-         * Solamente creamos el administrador
+         * Solo creamos el administrador
          * si todavía no existe.
          */
         if (!userRepository.existsByEmail(adminEmail)) {
@@ -77,36 +73,24 @@ public class DataInitializer implements CommandLineRunner {
             User admin = new User();
 
             // Nombre.
-            admin.setName(
-                    "Administrador Óptica Lentes J.L."
-            );
+            admin.setName(adminName);
 
             // Correo.
             admin.setEmail(adminEmail);
 
-
-            /*
-             * IMPORTANTE:
-             *
-             * La contraseña se convierte a BCrypt
-             * antes de guardarse en MySQL.
-             */
+            // Contraseña protegida con BCrypt.
             admin.setPassword(
-                    passwordEncoder.encode("Admin123*")
+                    passwordEncoder.encode(adminPassword)
             );
-
 
             // Rol.
             admin.setRole("ADMIN");
 
-
             // Usuario activo.
             admin.setActive(true);
 
-
             // Guardamos en MySQL.
             userRepository.save(admin);
-
 
             System.out.println(
                     "Administrador inicial creado correctamente."
