@@ -16,7 +16,7 @@ import axios from "axios";
 const api = axios.create({
 
     // Dirección base del backend Spring Boot.
-    baseURL: "http://localhost:8080/api",
+    baseURL: import.meta.env.VITE_API_URL,
 
     // Tiempo máximo de espera.
     timeout: 5000
