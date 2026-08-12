@@ -36,7 +36,7 @@ import java.util.List;
  * Permitimos temporalmente las peticiones
  * desde nuestro Frontend React.
  */
-@CrossOrigin(origins = "http://localhost:5173")
+
 
 
 public class ProductController {
