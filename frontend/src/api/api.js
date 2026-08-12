@@ -9,6 +9,14 @@
 import axios from "axios";
 
 
+// En desarrollo usamos la ruta relativa /api. Vite la redirige al backend
+// Spring Boot, evitando que el navegador tenga que comunicarse con otro origen.
+// En produccion se puede reemplazar mediante VITE_API_URL.
+const apiBaseUrl = (
+    import.meta.env.VITE_API_URL || "/api"
+).replace(/\/$/, "");
+
+
 // ============================================================================
 // INSTANCIA AXIOS
 // ============================================================================
@@ -16,7 +24,7 @@ import axios from "axios";
 const api = axios.create({
 
     // Dirección base del backend Spring Boot.
-    baseURL: import.meta.env.VITE_API_URL,
+    baseURL: apiBaseUrl,
 
     // Tiempo máximo de espera.
     timeout: 5000

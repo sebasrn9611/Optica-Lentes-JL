@@ -102,3 +102,28 @@ JPA / Hibernate
    │
    ▼
 MySQL
+```
+
+## Ejecución local
+
+El frontend no se conecta directamente a MySQL. El flujo correcto es:
+
+```text
+React (5173) -> Spring Boot (8080) -> MySQL (3306)
+```
+
+1. Verifica que el servicio MySQL esté iniciado y que exista la base de datos
+   `optica_lentes_jl`.
+2. Inicia el backend desde IntelliJ con estas variables de entorno:
+   `DB_PASSWORD`, `JWT_SECRET`, `ADMIN_EMAIL` y `ADMIN_PASSWORD`.
+3. Confirma que `http://localhost:8080/api/products` responde antes de iniciar
+   el frontend.
+4. En otra terminal, inicia React:
+
+```powershell
+cd frontend
+npm run dev
+```
+
+Durante el desarrollo, Vite redirige automáticamente las solicitudes hechas a
+`/api` hacia `http://localhost:8080`.
