@@ -180,7 +180,15 @@ public class SecurityConfig {
                          */
                         .requestMatchers(
                                 HttpMethod.GET,
-                                "/api/products/**"
+                                "/api/products/**",
+                                "/api/testimonials/**"
+                        )
+                        .permitAll()
+
+                        // Los visitantes pueden publicar su experiencia.
+                        .requestMatchers(
+                                HttpMethod.POST,
+                                "/api/testimonials/**"
                         )
                         .permitAll()
 

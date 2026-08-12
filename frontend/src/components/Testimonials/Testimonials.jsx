@@ -6,8 +6,12 @@
 // ============================================================================
 
 import "./Testimonials.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaQuoteLeft, FaStar } from "react-icons/fa";
+import {
+    createTestimonial,
+    getTestimonials
+} from "../../services/testimonialService";
 
 const defaultTestimonials = [
     {
@@ -36,16 +40,6 @@ const defaultTestimonials = [
     }
 ];
 
-const STORAGE_KEY = "optica-testimonials";
-
-function getSavedTestimonials() {
-    try {
-        return JSON.parse(localStorage.getItem(STORAGE_KEY)) ?? [];
-    } catch {
-        return [];
-    }
-}
-
 function getInitials(name) {
     return name
         .trim()
@@ -56,16 +50,46 @@ function getInitials(name) {
 }
 
 function Testimonials() {
-    const [savedTestimonials, setSavedTestimonials] = useState(getSavedTestimonials);
+    const [savedTestimonials, setSavedTestimonials] = useState([]);
     const [name, setName] = useState("");
     const [comment, setComment] = useState("");
     const [rating, setRating] = useState(0);
     const [hoveredRating, setHoveredRating] = useState(0);
     const [status, setStatus] = useState("");
+    const [isLoading, setIsLoading] = useState(true);
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
     const testimonials = [...savedTestimonials, ...defaultTestimonials];
 
-    const handleSubmit = (event) => {
+    useEffect(() => {
+        let isMounted = true;
+
+        const loadTestimonials = async () => {
+            try {
+                const data = await getTestimonials();
+
+                if (isMounted) {
+                    setSavedTestimonials(data);
+                }
+            } catch {
+                if (isMounted) {
+                    setStatus("No fue posible cargar los testimonios de nuestros clientes.");
+                }
+            } finally {
+                if (isMounted) {
+                    setIsLoading(false);
+                }
+            }
+        };
+
+        loadTestimonials();
+
+        return () => {
+            isMounted = false;
+        };
+    }, []);
+
+    const handleSubmit = async (event) => {
         event.preventDefault();
 
         if (!name.trim() || !comment.trim() || rating === 0) {
@@ -73,25 +97,25 @@ function Testimonials() {
             return;
         }
 
-        const newTestimonial = {
-            id: `patient-${Date.now()}`,
+        const testimonialToCreate = {
             name: name.trim(),
-            initials: getInitials(name),
             comment: comment.trim(),
             rating,
         };
 
-        const updatedTestimonials = [newTestimonial, ...savedTestimonials];
-
+        setIsSubmitting(true);
+        setStatus("");
         try {
-            localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedTestimonials));
-            setSavedTestimonials(updatedTestimonials);
+            const savedTestimonial = await createTestimonial(testimonialToCreate);
+            setSavedTestimonials((current) => [savedTestimonial, ...current]);
             setName("");
             setComment("");
             setRating(0);
-            setStatus("¡Gracias! Tu testimonio quedó guardado.");
+            setStatus("¡Gracias! Tu testimonio quedó guardado y publicado.");
         } catch {
             setStatus("No fue posible guardar el testimonio. Inténtalo nuevamente.");
+        } finally {
+            setIsSubmitting(false);
         }
     };
 
@@ -159,8 +183,8 @@ function Testimonials() {
                     />
                     <span className="testimonial-character-count">{comment.length}/500</span>
 
-                    <button className="testimonial-submit" type="submit">
-                        Publicar testimonio
+                    <button className="testimonial-submit" type="submit" disabled={isSubmitting}>
+                        {isSubmitting ? "Publicando..." : "Publicar testimonio"}
                     </button>
 
                     {status && (
@@ -168,6 +192,10 @@ function Testimonials() {
                     )}
                 </div>
             </form>
+
+            {isLoading && (
+                <p className="testimonials-loading" role="status">Cargando testimonios...</p>
+            )}
 
             <div className="testimonials-container">
                 {testimonials.map((testimonial) => (
@@ -187,7 +215,7 @@ function Testimonials() {
 
                         <div className="testimonial-customer">
                             <div className="testimonial-avatar" aria-hidden="true">
-                                {testimonial.initials}
+                                {getInitials(testimonial.name)}
                             </div>
 
                             <div>
