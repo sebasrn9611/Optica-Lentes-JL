@@ -181,7 +181,15 @@ public class SecurityConfig {
                         .requestMatchers(
                                 HttpMethod.GET,
                                 "/api/products/**",
-                                "/api/testimonials/**"
+                                "/api/testimonials/**",
+                                "/api/appointments/availability"
+                        )
+                        .permitAll()
+
+                        // Cualquier visitante puede crear una cita.
+                        .requestMatchers(
+                                HttpMethod.POST,
+                                "/api/appointments"
                         )
                         .permitAll()
 

@@ -9,6 +9,8 @@
 
 // Importamos los estilos exclusivos del componente.
 import "./Hero.css";
+import { useState } from "react";
+import AppointmentBooking from "../AppointmentBooking/AppointmentBooking";
 
 // Importamos la imagen profesional del Hero.
 import heroOptometrista from "../../assets/images/hero/hero-optometrista.png";
@@ -23,9 +25,11 @@ import {
 
 // Creamos el componente Hero.
 function Hero() {
+    const [appointmentOpen, setAppointmentOpen] = useState(false);
+
     return (
-        // El id permite navegar hasta esta sección desde el Navbar.
-        <section className="hero" id="inicio">
+        <>
+            <section className="hero" id="inicio">
 
             {/* Contenedor de las dos columnas principales */}
             <div className="hero-container">
@@ -90,6 +94,7 @@ function Hero() {
                         <button
                             type="button"
                             className="hero-button hero-button-primary"
+                            onClick={() => setAppointmentOpen(true)}
                         >
                             <FaCalendarAlt />
                             Agendar cita
@@ -147,7 +152,12 @@ function Hero() {
 
             </div>
 
-        </section>
+            </section>
+            <AppointmentBooking
+                open={appointmentOpen}
+                onClose={() => setAppointmentOpen(false)}
+            />
+        </>
     );
 }
 

@@ -1,0 +1,41 @@
+.appointments-admin { color: #314b60; }
+.appointments-title { display: flex; gap: 25px; align-items: end; justify-content: space-between; margin-bottom: 25px; }
+.appointments-title > div > span { color: #0879c9; font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; }
+.appointments-title h2 { margin: 6px 0; color: #173955; font-size: 30px; }
+.appointments-title p { color: #718295; }
+.appointments-title label { display: flex; flex-direction: column; gap: 6px; font-size: 12px; font-weight: 800; }
+.appointments-title select, .reschedule-modal input, .reschedule-modal select { padding: 11px 13px; color: #314b60; background: #fff; border: 1px solid #cfdae3; border-radius: 8px; font: inherit; }
+.appointment-stat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin-bottom: 24px; }
+.appointment-stat-grid article { display: flex; gap: 13px; align-items: center; padding: 18px; background: #fff; border: 1px solid #e0e8ee; border-radius: 12px; }
+.appointment-stat-grid svg { padding: 11px; width: 43px; height: 43px; color: #0879c9; background: #eaf5fd; border-radius: 10px; }
+.appointment-stat-grid strong, .appointment-stat-grid span { display: block; }
+.appointment-stat-grid strong { color: #173955; font-size: 22px; }
+.appointment-stat-grid span { color: #718295; font-size: 12px; }
+.appointments-alert { margin-bottom: 18px; padding: 12px 15px; color: #075c9f; background: #eaf6ff; border-radius: 9px; }
+.appointments-table-wrap { overflow-x: auto; background: #fff; border: 1px solid #e0e8ee; border-radius: 13px; }
+.appointments-table { width: 100%; border-collapse: collapse; }
+.appointments-table th, .appointments-table td { padding: 15px 13px; border-bottom: 1px solid #eaf0f4; text-align: left; white-space: nowrap; }
+.appointments-table th { color: #718295; background: #f8fafc; font-size: 11px; text-transform: uppercase; }
+.appointments-table td { font-size: 13px; }
+.appointments-table td strong, .appointments-table td small { display: block; }
+.appointments-table td small { margin-top: 4px; color: #7c8d9a; }
+.appointments-table a { color: #0879c9; text-decoration: none; }
+.appointment-state { padding: 5px 9px; border-radius: 20px; font-size: 11px; font-weight: 800; }
+.appointment-state--pending { color: #956116; background: #fff0cf; }
+.appointment-state--cancelled { color: #9e3e3e; background: #fde7e7; }
+.appointment-actions { display: flex; gap: 7px; }
+.appointment-actions button { padding: 7px 9px; color: #0870b9; background: #e9f5fd; border: 0; border-radius: 7px; font-weight: 700; cursor: pointer; }
+.appointment-actions button.danger { color: #b03e3e; background: #fdeaea; }
+.appointments-empty { padding: 40px !important; color: #778997; text-align: center !important; }
+.reschedule-overlay { position: fixed; z-index: 100; inset: 0; display: grid; padding: 20px; background: rgba(4, 28, 48, .65); place-items: center; }
+.reschedule-modal { width: min(420px, 100%); padding: 27px; background: #fff; border-radius: 15px; box-shadow: 0 20px 55px rgba(0,0,0,.22); }
+.reschedule-modal h3 { color: #173955; font-size: 23px; }
+.reschedule-modal > p { margin: 6px 0 20px; color: #718295; }
+.reschedule-modal label { display: flex; flex-direction: column; gap: 7px; margin-top: 14px; font-size: 13px; font-weight: 800; }
+.reschedule-modal > small { display: block; margin-top: 10px; color: #9e3e3e; }
+.reschedule-modal > div { display: flex; gap: 10px; justify-content: flex-end; margin-top: 22px; }
+.reschedule-modal button { padding: 10px 14px; color: #526a7b; background: #edf2f5; border: 0; border-radius: 8px; font-weight: 800; cursor: pointer; }
+.reschedule-modal button[type="submit"] { color: #fff; background: #0879c9; }
+.reschedule-modal button:disabled { opacity: .5; cursor: not-allowed; }
+@media (max-width: 900px) { .appointment-stat-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) { .appointments-title { align-items: stretch; flex-direction: column; } .appointment-stat-grid { grid-template-columns: 1fr 1fr; } }

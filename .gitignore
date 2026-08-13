@@ -18,6 +18,9 @@ frontend/dist/
 # Archivos compilados por Maven
 backend/target/
 
+# Directorio local de trabajo del servidor Tomcat
+backend/.tomcat/
+
 # Archivos Java compilados
 *.class
 

@@ -66,6 +66,7 @@ import Admin from "./pages/Admin/Admin";
 
 // Página para administrar productos.
 import AdminProducts from "./pages/Admin/Products/AdminProducts";
+import AdminAppointments from "./pages/Admin/Appointments/AdminAppointments";
 
 
 // ============================================================================
@@ -191,6 +192,11 @@ function App() {
                     <Route
                         path="products"
                         element={<AdminProducts />}
+                    />
+
+                    <Route
+                        path="citas"
+                        element={<AdminAppointments />}
                     />
 
 
