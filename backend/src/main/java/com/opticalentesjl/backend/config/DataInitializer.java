@@ -24,8 +24,24 @@ import java.math.BigDecimal;
 // INICIALIZADOR DE DATOS
 // ============================================================================
 
+/*
+ * Esta clase se ejecuta automáticamente cuando Spring Boot inicia.
+ *
+ * Su función es garantizar que existan:
+ *
+ * 1. El administrador principal.
+ * 2. Los productos iniciales de la óptica.
+ *
+ * Si los productos ya existen en MySQL, NO los vuelve a crear.
+ */
+
 @Component
 public class DataInitializer implements CommandLineRunner {
+
+
+    // =========================================================================
+    // REPOSITORIOS Y SEGURIDAD
+    // =========================================================================
 
     // Repositorio para trabajar con usuarios.
     private final UserRepository userRepository;
@@ -37,13 +53,15 @@ public class DataInitializer implements CommandLineRunner {
     private final PasswordEncoder passwordEncoder;
 
 
-    // ========================================================================
-    // VARIABLES DE CONFIGURACIÓN
-    // ========================================================================
+    // =========================================================================
+    // VARIABLES DE CONFIGURACIÓN DEL ADMINISTRADOR
+    // =========================================================================
 
     /*
-     * Estas variables vienen desde application.properties
-     * y, en producción, desde Railway.
+     * Estos valores se obtienen desde application.properties.
+     *
+     * En producción vienen desde las variables
+     * configuradas en Railway.
      */
 
     @Value("${app.admin.email}")
@@ -56,9 +74,9 @@ public class DataInitializer implements CommandLineRunner {
     private String adminName;
 
 
-    // ========================================================================
+    // =========================================================================
     // CONSTRUCTOR
-    // ========================================================================
+    // =========================================================================
 
     public DataInitializer(
             UserRepository userRepository,
@@ -67,78 +85,99 @@ public class DataInitializer implements CommandLineRunner {
     ) {
 
         this.userRepository = userRepository;
+
         this.productRepository = productRepository;
+
         this.passwordEncoder = passwordEncoder;
     }
 
 
-    // ========================================================================
-    // EJECUCIÓN AUTOMÁTICA AL INICIAR SPRING BOOT
-    // ========================================================================
+    // =========================================================================
+    // EJECUCIÓN AUTOMÁTICA
+    // =========================================================================
 
     @Override
     public void run(String... args) {
 
         /*
-         * Primero configuramos o actualizamos
-         * el administrador.
+         * Primero verificamos el administrador.
          */
         configurarAdministrador();
 
 
         /*
-         * Después verificamos si debe existir
-         * el producto inicial.
+         * Después comprobamos los productos iniciales.
+         *
+         * Cada producto se crea únicamente
+         * si todavía no existe en MySQL.
          */
+
+        crearMonturaEleganceSiNoExiste();
+
+        crearGafasDeSolSiNoExisten();
+
+        crearLentesFormuladosSiNoExisten();
+
         crearGafasDeportivasSiNoExisten();
+
+
+        System.out.println(
+                "Inicialización de datos completada correctamente."
+        );
     }
 
 
-    // ========================================================================
+    // =========================================================================
     // CONFIGURAR ADMINISTRADOR
-    // ========================================================================
+    // =========================================================================
 
     private void configurarAdministrador() {
 
         /*
-         * Buscamos el administrador utilizando
-         * el correo configurado.
+         * Buscamos al administrador por correo.
          */
         User admin = userRepository
                 .findByEmail(adminEmail)
                 .orElse(null);
 
 
-        // ====================================================================
-        // SI EL ADMINISTRADOR NO EXISTE
-        // ====================================================================
+        // =====================================================================
+        // EL ADMINISTRADOR NO EXISTE
+        // =====================================================================
 
         if (admin == null) {
 
-            admin = new User();
+            User nuevoAdmin = new User();
 
-            // Nombre.
-            admin.setName(adminName);
+
+            // Nombre del administrador.
+            nuevoAdmin.setName(adminName);
+
 
             // Correo.
-            admin.setEmail(adminEmail);
+            nuevoAdmin.setEmail(adminEmail);
+
 
             /*
-             * Convertimos la contraseña en un hash BCrypt
-             * antes de guardarla.
+             * Convertimos la contraseña recibida
+             * desde Railway en un hash BCrypt.
              */
-            admin.setPassword(
+            nuevoAdmin.setPassword(
                     passwordEncoder.encode(adminPassword)
             );
 
-            // Rol administrativo.
-            admin.setRole("ADMIN");
+
+            // Rol.
+            nuevoAdmin.setRole("ADMIN");
+
 
             // Usuario activo.
-            admin.setActive(true);
+            nuevoAdmin.setActive(true);
+
 
             // Guardamos en MySQL.
-            userRepository.save(admin);
+            userRepository.save(nuevoAdmin);
+
 
             System.out.println(
                     "Administrador inicial creado correctamente."
@@ -148,80 +187,239 @@ public class DataInitializer implements CommandLineRunner {
         }
 
 
-        // ====================================================================
-        // SI EL ADMINISTRADOR YA EXISTE
-        // ====================================================================
+        // =====================================================================
+        // EL ADMINISTRADOR YA EXISTE
+        // =====================================================================
 
         /*
-         * Actualizamos su contraseña usando el valor actual
-         * de ADMIN_PASSWORD configurado en Railway.
+         * Comprobamos si la contraseña configurada actualmente
+         * en Railway coincide con la contraseña almacenada.
+         *
+         * Si ya coincide, NO hacemos nada.
+         *
+         * Si cambias ADMIN_PASSWORD en Railway,
+         * entonces se actualizará automáticamente.
          */
-        admin.setPassword(
-                passwordEncoder.encode(adminPassword)
-        );
 
-        userRepository.save(admin);
+        boolean passwordActualizada =
+                passwordEncoder.matches(
+                        adminPassword,
+                        admin.getPassword()
+                );
 
-        System.out.println(
-                "Contraseña del administrador actualizada correctamente."
+
+        if (!passwordActualizada) {
+
+            admin.setPassword(
+                    passwordEncoder.encode(adminPassword)
+            );
+
+            userRepository.save(admin);
+
+
+            System.out.println(
+                    "Contraseña del administrador actualizada correctamente."
+            );
+
+        } else {
+
+            System.out.println(
+                    "Administrador verificado correctamente."
+            );
+        }
+    }
+
+
+    // =========================================================================
+    // MONTURA ELEGANCE
+    // =========================================================================
+
+    private void crearMonturaEleganceSiNoExiste() {
+
+        crearProductoSiNoExiste(
+
+                "Montura Elegance",
+
+                "Montura elegante y moderna, diseñada para brindar comodidad, " +
+                        "estilo y una excelente adaptación para lentes formulados.",
+
+                new BigDecimal("189000"),
+
+                "montura1.jpg",
+
+                "Monturas",
+
+                10
         );
     }
 
 
-    // ========================================================================
-    // CREAR PRODUCTO INICIAL
-    // ========================================================================
+    // =========================================================================
+    // GAFAS DE SOL
+    // =========================================================================
+
+    private void crearGafasDeSolSiNoExisten() {
+
+        crearProductoSiNoExiste(
+
+                "Gafas de Sol",
+
+                "Gafas de sol modernas con protección para los rayos UV, " +
+                        "diseñadas para combinar comodidad, protección y estilo.",
+
+                new BigDecimal("225000"),
+
+                "montura2.jpg",
+
+                "Gafas de sol",
+
+                28
+        );
+    }
+
+
+    // =========================================================================
+    // LENTES FORMULADOS
+    // =========================================================================
+
+    private void crearLentesFormuladosSiNoExisten() {
+
+        crearProductoSiNoExiste(
+
+                "Lentes Formulados",
+
+                "Lentes formulados personalizados de acuerdo con las necesidades " +
+                        "visuales del paciente, ofreciendo comodidad y claridad.",
+
+                new BigDecimal("160000"),
+
+                "lentes.jpg",
+
+                "Lentes formulados",
+
+                30
+        );
+    }
+
+
+    // =========================================================================
+    // GAFAS DEPORTIVAS
+    // =========================================================================
 
     private void crearGafasDeportivasSiNoExisten() {
 
-        String nombre =
-                "Gafas deportivas Velocity";
+        crearProductoSiNoExiste(
 
+                "Gafas deportivas Velocity",
+
+                "Diseño envolvente, montura liviana y lente espejado " +
+                        "con protección UV para correr, montar bicicleta " +
+                        "y entrenar al aire libre.",
+
+                new BigDecimal("189900"),
+
+                "gafas-deportivas.png",
+
+                "Gafas deportivas",
+
+                12
+        );
+    }
+
+
+    // =========================================================================
+    // MÉTODO REUTILIZABLE PARA CREAR PRODUCTOS
+    // =========================================================================
+
+    /*
+     * Este método evita repetir todo el código
+     * necesario para crear cada producto.
+     *
+     * Recibe:
+     *
+     * nombre
+     * descripción
+     * precio
+     * imagen
+     * categoría
+     * stock
+     */
+
+    private void crearProductoSiNoExiste(
+            String nombre,
+            String descripcion,
+            BigDecimal precio,
+            String imagen,
+            String categoria,
+            int stock
+    ) {
+
+
+        // =====================================================================
+        // COMPROBAR SI YA EXISTE
+        // =====================================================================
 
         /*
-         * Si el producto ya existe,
-         * no hacemos nada.
+         * Si MySQL ya contiene un producto
+         * con este nombre, no lo duplicamos.
          */
+
         if (productRepository.existsByNameIgnoreCase(nombre)) {
+
+            System.out.println(
+                    "Producto ya existente: " + nombre
+            );
+
             return;
         }
 
 
-        /*
-         * Si no existe, lo creamos.
-         */
+        // =====================================================================
+        // CREAR PRODUCTO
+        // =====================================================================
+
         Product producto = new Product();
 
+
+        // Nombre.
         producto.setName(nombre);
 
-        producto.setDescription(
-                "Diseño envolvente, montura liviana y lente espejado " +
-                "con protección UV para correr, montar bicicleta " +
-                "y entrenar al aire libre."
-        );
 
-        producto.setPrice(
-                new BigDecimal("189900")
-        );
+        // Descripción.
+        producto.setDescription(descripcion);
 
-        producto.setImage(
-                "gafas-deportivas.png"
-        );
 
-        producto.setCategory(
-                "Gafas deportivas"
-        );
+        // Precio.
+        producto.setPrice(precio);
 
-        producto.setStock(12);
 
+        /*
+         * Guardamos solamente el nombre del archivo.
+         *
+         * React se encarga posteriormente
+         * de relacionarlo con la imagen correspondiente.
+         */
+        producto.setImage(imagen);
+
+
+        // Categoría.
+        producto.setCategory(categoria);
+
+
+        // Cantidad disponible.
+        producto.setStock(stock);
+
+
+        // Producto visible/activo.
         producto.setActive(true);
 
 
-        // Guardamos el producto.
+        // Guardamos en MySQL.
         productRepository.save(producto);
 
+
         System.out.println(
-                "Producto inicial creado correctamente."
+                "Producto inicial creado: " + nombre
         );
     }
 }

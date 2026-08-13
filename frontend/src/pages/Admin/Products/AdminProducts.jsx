@@ -380,10 +380,35 @@ function AdminProducts() {
                             <input
                                 id="price"
                                 name="price"
-                                type="number"
-                                min="0"
-                                value={formData.price}
-                                onChange={handleChange}
+
+                                // Usamos texto para poder mostrar el formato colombiano.
+                                type="text"
+
+                                // Abre teclado numérico en dispositivos móviles.
+                                inputMode="numeric"
+
+                                // Ejemplo visual para el administrador.
+                                placeholder="$ 120.000"
+
+                                // Mostramos el precio con separadores de miles.
+                                value={
+                                    formData.price
+                                        ? `$ ${Number(formData.price).toLocaleString("es-CO")}`
+                                        : ""
+                                }
+
+                                // Limpiamos cualquier punto, símbolo $ o espacio.
+                                onChange={(event) => {
+
+                                    const precioLimpio =
+                                        event.target.value.replace(/\D/g, "");
+
+                                    setFormData({
+                                        ...formData,
+                                        price: precioLimpio
+                                    });
+                                }}
+
                                 required
                             />
 
