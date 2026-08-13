@@ -428,6 +428,7 @@ function AdminProducts() {
                                 </option>
                                 <option value="Monturas">Monturas</option>
                                 <option value="Gafas de sol">Gafas de sol</option>
+                                <option value="Gafas deportivas">Gafas deportivas</option>
                                 <option value="Lentes formulados">Lentes formulados</option>
                             </select>
 

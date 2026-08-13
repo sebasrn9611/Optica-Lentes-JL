@@ -20,13 +20,15 @@ import { getProducts } from "../../services/productService";
 import monturaElegance from "../../assets/images/products/montura1.jpg";
 import gafasSol from "../../assets/images/products/montura2.jpg";
 import lentesFormulados from "../../assets/images/products/lentes.jpg";
+import gafasDeportivas from "../../assets/images/products/gafas-deportivas.png";
 
 // Creamos un mapa para relacionar el nombre guardado en MySQL
 // con la imagen importada dentro del proyecto React.
 const productImages = {
     "montura1.jpg": monturaElegance,
     "montura2.jpg": gafasSol,
-    "lentes.jpg": lentesFormulados
+    "lentes.jpg": lentesFormulados,
+    "gafas-deportivas.png": gafasDeportivas
 };
 
 // Función que determina qué imagen mostrar.
