@@ -6,6 +6,7 @@ package com.opticalentesjl.backend.config;
 
 import com.opticalentesjl.backend.entity.Product;
 import com.opticalentesjl.backend.entity.User;
+
 import com.opticalentesjl.backend.repository.ProductRepository;
 import com.opticalentesjl.backend.repository.UserRepository;
 
@@ -26,19 +27,24 @@ import java.math.BigDecimal;
 @Component
 public class DataInitializer implements CommandLineRunner {
 
-    // Repositorio de usuarios.
+    // Repositorio para trabajar con usuarios.
     private final UserRepository userRepository;
 
-    // Repositorio de productos destacados.
+    // Repositorio para trabajar con productos.
     private final ProductRepository productRepository;
 
-    // BCrypt.
+    // BCrypt para proteger las contraseñas.
     private final PasswordEncoder passwordEncoder;
 
 
     // ========================================================================
     // VARIABLES DE CONFIGURACIÓN
     // ========================================================================
+
+    /*
+     * Estas variables vienen desde application.properties
+     * y, en producción, desde Railway.
+     */
 
     @Value("${app.admin.email}")
     private String adminEmail;
@@ -67,19 +73,49 @@ public class DataInitializer implements CommandLineRunner {
 
 
     // ========================================================================
-    // CREAR ADMINISTRADOR INICIAL
+    // EJECUCIÓN AUTOMÁTICA AL INICIAR SPRING BOOT
     // ========================================================================
 
     @Override
     public void run(String... args) {
 
         /*
-         * Solo creamos el administrador
-         * si todavía no existe.
+         * Primero configuramos o actualizamos
+         * el administrador.
          */
-        if (!userRepository.existsByEmail(adminEmail)) {
+        configurarAdministrador();
 
-            User admin = new User();
+
+        /*
+         * Después verificamos si debe existir
+         * el producto inicial.
+         */
+        crearGafasDeportivasSiNoExisten();
+    }
+
+
+    // ========================================================================
+    // CONFIGURAR ADMINISTRADOR
+    // ========================================================================
+
+    private void configurarAdministrador() {
+
+        /*
+         * Buscamos el administrador utilizando
+         * el correo configurado.
+         */
+        User admin = userRepository
+                .findByEmail(adminEmail)
+                .orElse(null);
+
+
+        // ====================================================================
+        // SI EL ADMINISTRADOR NO EXISTE
+        // ====================================================================
+
+        if (admin == null) {
+
+            admin = new User();
 
             // Nombre.
             admin.setName(adminName);
@@ -87,12 +123,15 @@ public class DataInitializer implements CommandLineRunner {
             // Correo.
             admin.setEmail(adminEmail);
 
-            // Contraseña protegida con BCrypt.
+            /*
+             * Convertimos la contraseña en un hash BCrypt
+             * antes de guardarla.
+             */
             admin.setPassword(
                     passwordEncoder.encode(adminPassword)
             );
 
-            // Rol.
+            // Rol administrativo.
             admin.setRole("ADMIN");
 
             // Usuario activo.
@@ -104,30 +143,85 @@ public class DataInitializer implements CommandLineRunner {
             System.out.println(
                     "Administrador inicial creado correctamente."
             );
+
+            return;
         }
 
-        crearGafasDeportivasSiNoExisten();
+
+        // ====================================================================
+        // SI EL ADMINISTRADOR YA EXISTE
+        // ====================================================================
+
+        /*
+         * Actualizamos su contraseña usando el valor actual
+         * de ADMIN_PASSWORD configurado en Railway.
+         */
+        admin.setPassword(
+                passwordEncoder.encode(adminPassword)
+        );
+
+        userRepository.save(admin);
+
+        System.out.println(
+                "Contraseña del administrador actualizada correctamente."
+        );
     }
+
+
+    // ========================================================================
+    // CREAR PRODUCTO INICIAL
+    // ========================================================================
 
     private void crearGafasDeportivasSiNoExisten() {
 
-        String nombre = "Gafas deportivas Velocity";
+        String nombre =
+                "Gafas deportivas Velocity";
 
+
+        /*
+         * Si el producto ya existe,
+         * no hacemos nada.
+         */
         if (productRepository.existsByNameIgnoreCase(nombre)) {
             return;
         }
 
+
+        /*
+         * Si no existe, lo creamos.
+         */
         Product producto = new Product();
+
         producto.setName(nombre);
+
         producto.setDescription(
-                "Diseño envolvente, montura liviana y lente espejado con protección UV para correr, montar bicicleta y entrenar al aire libre."
+                "Diseño envolvente, montura liviana y lente espejado " +
+                "con protección UV para correr, montar bicicleta " +
+                "y entrenar al aire libre."
         );
-        producto.setPrice(new BigDecimal("189900"));
-        producto.setImage("gafas-deportivas.png");
-        producto.setCategory("Gafas deportivas");
+
+        producto.setPrice(
+                new BigDecimal("189900")
+        );
+
+        producto.setImage(
+                "gafas-deportivas.png"
+        );
+
+        producto.setCategory(
+                "Gafas deportivas"
+        );
+
         producto.setStock(12);
+
         producto.setActive(true);
 
+
+        // Guardamos el producto.
         productRepository.save(producto);
+
+        System.out.println(
+                "Producto inicial creado correctamente."
+        );
     }
 }
