@@ -10,7 +10,7 @@
 import { useEffect, useState } from "react";
 
 // Importamos los estilos del componente.
-import "./Products.css";
+import "./products.css";
 
 // Importamos la función que consulta los productos.
 import { getProducts } from "../../services/productService";
